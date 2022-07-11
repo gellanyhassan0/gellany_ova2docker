@@ -9,3 +9,6 @@ parted -s analysis-image-disk001.raw b print
 mkdir /mnt/container
 mount -o loop,ro,offset=1045876 analysis-image-disk001.raw /mnt/container
 ls /mnt/container
+tar -C /mnt/container -czf image.tar.gz .
+docker import image.tar.gz demotest:1.0
+docker images list
