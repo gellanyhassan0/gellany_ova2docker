@@ -8,9 +8,10 @@ tar -xvf analysis-image.ova
 qemu-img convert -O raw analysis-image-disk001.vmdk analysis-image-disk001.raw
 sudo fdisk -l analysis-image-disk001.raw
 mkdir /mnt/container
-sudo kpartx -av analysis-image-disk001.raw
+losetup /dev/loop0 analysis-image-disk001.raw   
+kpartx -a /dev/loop0   
+mount /dev/mapper/loop0p1 /mnt 
 
-mount -o loop,ro,offset=1045876 analysis-image-disk001.raw /mnt/container
 ls /mnt/container
 tar -C /mnt/container -czf image.tar.gz .
 docker import image.tar.gz demotest:1.0
