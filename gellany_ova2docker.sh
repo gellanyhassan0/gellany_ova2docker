@@ -15,5 +15,5 @@ mount /dev/mapper/loop0p1 /mnt
 ls /mnt/container
 tar -C /mnt/container -czf image.tar.gz .
 docker import image.tar.gz demotest:1.0
-docker images list
+docker image list
 docker run -i -t 891dcfcad752 /bin/bash
